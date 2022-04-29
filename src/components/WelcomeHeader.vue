@@ -6,7 +6,7 @@
 
 <script>
 export default {
-  name: "MainHeader"
+  name: "WelcomeHeader"
 };
 </script>
 
