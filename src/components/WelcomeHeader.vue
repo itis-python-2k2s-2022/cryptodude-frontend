@@ -1,6 +1,6 @@
 <template>
   <header>
-    <h1>Crypto Dude</h1>
+    <h1><slot></slot></h1>
   </header>
 </template>
 

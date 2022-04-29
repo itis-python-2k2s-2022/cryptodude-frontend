@@ -6,7 +6,7 @@ import {BContainer} from "bootstrap-vue-3";
 
 <template>
   <b-container>
-    <WelcomeHeader/>
+    <WelcomeHeader>Crypto Dude</WelcomeHeader>
     <WelcomeBody/>
   </b-container>
 </template>

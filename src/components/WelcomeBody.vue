@@ -1,11 +1,13 @@
 <template>
   <div>
     <p>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+      sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+      Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
+      ut aliquip ex ea commodo consequat.
     </p>
     <div class="centered">
-<!--   TODO add url to auth   -->
-      <b-button pill variant="primary" size="lg" class="btn-custom-blue font-monospace"><span>Join now</span></b-button>
+      <b-button pill variant="primary" size="lg" class="btn-custom-blue font-monospace" :to="{ name: 'registration' }"><span>Join now</span></b-button>
     </div>
   </div>
 </template>
