@@ -1,9 +1,3 @@
-<script setup>
-import WelcomeHeader from "@/components/WelcomeHeader.vue";
-import WelcomeBody from "@/components/WelcomeBody.vue";
-import {BContainer} from "bootstrap-vue-3";
-</script>
-
 <template>
   <b-container>
     <WelcomeHeader>Crypto Dude</WelcomeHeader>
@@ -14,3 +8,14 @@ import {BContainer} from "bootstrap-vue-3";
 <style scoped>
 
 </style>
+
+
+<script>
+import WelcomeHeader from "@/components/WelcomeHeader.vue";
+import WelcomeBody from "@/components/WelcomeBody.vue";
+import {BContainer} from "bootstrap-vue-3";
+export default {
+  name: "Welcome",
+  components: { WelcomeHeader, WelcomeBody }
+}
+</script>
