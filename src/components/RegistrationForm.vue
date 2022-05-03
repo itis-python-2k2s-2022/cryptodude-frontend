@@ -68,10 +68,33 @@
           Passwords didn't match!
         </b-form-invalid-feedback>
       </b-form-group>
+      <b-form-checkbox-group id="checkbox-group-1">
+        <b-form-checkbox
+            id="checkbox-1"
+            name="accept_terms"
+            value=true
+            unchecked-value=false
+            size="lg"
+            required
+        >
+          I accept the terms and use
+        </b-form-checkbox>
+        <b-form-checkbox
+            id="checkbox-2"
+            v-model="form.remember"
+            name="remember_me"
+            value=true
+            unchecked-value=false
+            size="lg"
+        >
+          remember me
+        </b-form-checkbox>
+      </b-form-checkbox-group>
 
       <b-link :to="{ name: 'auth' }" class="color-custom-yellow" size="lg">Already 've got an account?..</b-link>
       <b-button-group size="lg" class="float-lg-end" pill>
         <b-button type="reset" variant="danger" class="btn-reset" pill>Reset</b-button>
+        &nbsp;
         <b-button type="submit" variant="primary" class="btn-custom-blue" pill>Sign up</b-button>
       </b-button-group>
     </b-form>
@@ -88,7 +111,8 @@ export default {
         email: '',
         nickname: '',
         password: '',
-        password_repeat: ''
+        password_repeat: '',
+        remember: false
       },
       show: true
     }
@@ -126,6 +150,7 @@ export default {
     }
   },
   methods: {
+    // TODO change to queries to backend
     onSubmit(event) {
       event.preventDefault()
       alert(JSON.stringify(this.form))
