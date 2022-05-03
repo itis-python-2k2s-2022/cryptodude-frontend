@@ -1,13 +1,18 @@
+<template>
+  <b-container>
+    <WelcomeHeader>Authentication</WelcomeHeader>
+    <AuthForm/>
+  </b-container>
+</template>
+
 <script>
 import WelcomeHeader from "../components/WelcomeHeader.vue";
+import AuthForm from "../components/AuthForm.vue";
 export default {
-  components: {WelcomeHeader}
+  name: "Auth",
+  components: {WelcomeHeader, AuthForm}
 }
 </script>
-
-<template>
-  <WelcomeHeader>Authentication</WelcomeHeader>
-</template>
 
 <style scoped>
 
