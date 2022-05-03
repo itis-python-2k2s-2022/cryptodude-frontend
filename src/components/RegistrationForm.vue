@@ -167,7 +167,7 @@ export default {
     onSubmit(event) {
       event.preventDefault()
       if (this.formIsValid) {
-        this.$router.push({ name: "index" }) // TODO поменять путь редиректа на главную страницу сайта
+        this.$router.push({ name: "index" })
       } else {
         this.error_occured = true;
         this.error_message = "Invalid data inside the form. Please correct your form and try again.";
