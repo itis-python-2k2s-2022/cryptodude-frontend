@@ -71,6 +71,7 @@
       <b-form-checkbox-group id="checkbox-group-1">
         <b-form-checkbox
             id="checkbox-1"
+            v-model="form.accept_terms"
             name="accept_terms"
             value=true
             unchecked-value=false
@@ -112,7 +113,8 @@ export default {
         nickname: '',
         password: '',
         password_repeat: '',
-        remember: false
+        remember: false,
+        accept_terms: false
       },
       show: true
     }
@@ -162,6 +164,8 @@ export default {
       this.form.nickname = ''
       this.form.password = ''
       this.form.password_repeat = ''
+      this.form.remember = false
+      this.form.accept_terms = false
       // Trick to reset/clear native browser form validation state
       this.show = false
       this.$nextTick(() => {
