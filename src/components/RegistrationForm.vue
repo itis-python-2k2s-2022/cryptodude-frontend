@@ -1,5 +1,8 @@
 <template>
   <div class="font-monospace">
+    <b-alert v-model="error_occured" variant="danger" dismissible>
+      {{ error_message }}
+    </b-alert>
     <b-form @submit="onSubmit" @reset="onReset" v-if="show">
       <b-form-group
           id="input-group-1"
@@ -116,6 +119,8 @@ export default {
         remember: false,
         accept_terms: false
       },
+      error_occured: false,
+      error_message: '',
       show: true
     }
   },
@@ -123,6 +128,7 @@ export default {
     passwordState() {
       let valid = true;
       let password = this.form.password;
+      if (password === '') return undefined;
       if (password.length < 8) {
         valid = false;
       } else if (!/\d/.test(password)) {
@@ -138,10 +144,12 @@ export default {
       return valid
     },
     passwordRepeatState() {
+      if (this.form.password_repeat === '') return undefined;
       return this.form.password_repeat === this.form.password
     },
     nicknameState() {
       let nickname = this.form.nickname;
+      if (nickname === '') return undefined;
       let valid = true;
       if (nickname.length < 1 || nickname.length > 30) {
         valid = false;
@@ -149,13 +157,21 @@ export default {
         valid = false;
       }
       return valid
+    },
+    formIsValid() {
+      return this.passwordState && this.passwordRepeatState && this.nicknameState;
     }
   },
   methods: {
     // TODO change to queries to backend
     onSubmit(event) {
       event.preventDefault()
-      alert(JSON.stringify(this.form))
+      if (this.formIsValid) {
+        this.$router.push({ name: "auth" }) // TODO поменять путь редиректа на главную страницу сайта
+      } else {
+        this.error_occured = true;
+        this.error_message = "Invalid data inside the form. Please correct your form and try again.";
+      }
     },
     onReset(event) {
       event.preventDefault()
