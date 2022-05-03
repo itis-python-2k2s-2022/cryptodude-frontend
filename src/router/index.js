@@ -45,7 +45,7 @@ const router = createRouter({
 //     // this route requires auth, check if logged in
 //     // if not, redirect to login page.
 //     if (!store.getters.isLoggedIn) {
-//       next({ name: 'sign_in' })
+//       next({ name: 'welcome' })
 //     } else {
 //       next() // go to wherever I'm going
 //     }
