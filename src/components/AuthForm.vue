@@ -54,6 +54,8 @@
 </template>
 
 <script>
+import request from "../services/api";
+import {setToken} from "../services/auth";
 export default {
   name: "AuthForm",
   components: {},
@@ -70,10 +72,14 @@ export default {
     }
   },
   methods: {
-    // TODO change to queries to backend
     onSubmit(event) {
       event.preventDefault()
-      if (!42) {
+      // TODO doesnt work because of CORS
+      let response = request.post("/auth/token",
+          {payload: [this.form.email, this.form.password]});
+      let token = response.data.json.get("access_token")
+      setToken(token)
+      if (token) {
         this.$router.push({ name: "index" })
       } else {
         this.error_occured = true;

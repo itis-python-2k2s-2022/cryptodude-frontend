@@ -3,6 +3,7 @@ import WelcomeView from "../views/Welcome.vue"
 import RegistrationView from "../views/Registration.vue"
 import AuthView from "../views/Auth.vue";
 import MainView from "../views/Main.vue";
+import {getToken} from "../services/auth";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -44,7 +45,7 @@ const router = createRouter({
 //   if (to.matched.some(record => record.meta.userIsAuthenticated)) {
 //     // this route requires auth, check if logged in
 //     // if not, redirect to login page.
-//     if (!store.getters.isLoggedIn) {
+//     if (!false) {
 //       next({ name: 'welcome' })
 //     } else {
 //       next() // go to wherever I'm going
@@ -52,7 +53,7 @@ const router = createRouter({
 //   } else if (to.matched.some(record => record.meta.userIsAuthenticated === false)) {
 //     // this route requires auth, check if logged in
 //     // if not, redirect to login page.
-//     if (store.getters.isLoggedIn) {
+//     if (!getToken()) {
 //       next({ name: 'index' })
 //     } else {
 //       next() // go to wherever I'm going
