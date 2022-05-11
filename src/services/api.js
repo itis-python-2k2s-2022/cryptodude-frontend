@@ -6,7 +6,8 @@ const token = getToken();
 const request = axios.create({
   baseURL: "http://localhost:8000",
   headers: {
-    Authorization: `Bearer ${token}`
+    Authorization: `Bearer ${token}`,
+    'Content-Type': "multipart/form-data"
   },
 });
 

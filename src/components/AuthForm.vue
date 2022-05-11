@@ -76,7 +76,8 @@ export default {
       event.preventDefault()
       // TODO doesnt work because of CORS
       let response = request.post("/auth/token",
-          {payload: [this.form.email, this.form.password]});
+          {username: this.form.email, password: this.form.password,
+          grant_type: "password"}, );
       let token = response.data.json.get("access_token")
       setToken(token)
       if (token) {
