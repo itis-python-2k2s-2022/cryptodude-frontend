@@ -1,10 +1,9 @@
 <template>
   <div>
     <p>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-      sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-      Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
-      ut aliquip ex ea commodo consequat.
+      This is the most useful thing on the whole Internet! But we should aware you.
+      We have no economic education, so there's no investment recommendations.
+      Please, make a lot of money and then share some with us ;-)
     </p>
     <div class="centered">
       <b-button pill variant="primary" size="lg" class="btn-custom-blue font-monospace" :to="{ name: 'registration' }"><span>Join now</span></b-button>
