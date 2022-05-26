@@ -4,6 +4,7 @@
     <b-card-group>
       <ul id="faq-list">
         <li v-repeat="items">
+<!--          TODO-->
           <FAQCard :question=""  :answer="{{ answer }}"/>
         </li>
       </ul>
