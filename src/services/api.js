@@ -1,10 +1,10 @@
 import axios from "axios";
-// import { UNIENV_HOST } from "../constants"; TODO host in constants
+import { BACKEND_HOST } from "../constants";
 import { getToken } from "./auth";
 const token = getToken();
 
 const request = axios.create({
-  baseURL: "http://localhost:8000",
+  baseURL: BACKEND_HOST,
   headers: {
     Authorization: `Bearer ${token}`,
     'Content-Type': "multipart/form-data"
