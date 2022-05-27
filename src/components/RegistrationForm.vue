@@ -106,6 +106,8 @@
 </template>
 
 <script>
+import request from "../services/api";
+
 export default {
   name: "RegistrationForm",
   components: {},
@@ -163,11 +165,25 @@ export default {
     }
   },
   methods: {
-    // TODO change to queries to backend
-    onSubmit(event) {
+    async onSubmit(event) {
       event.preventDefault()
       if (this.formIsValid) {
-        this.$router.push({ name: "index" })
+        const form_to_post = {
+          name: this.form.nickname,
+          email: this.form.email,
+          password: this.form.password
+        }
+        const response = await request.post('/auth/register', form_to_post, { "Content-Type": "application/json" });
+        if (response.status === 200) {
+          await this.$router.push({name: "auth"});
+        } else {
+          this.error_occured = true;
+          if (response.data.detail) {
+            this.error_message = response.data.detail;
+          } else {
+            this.error_message = "Sorry, but an unknown error has occurred. Try again.";
+          }
+        }
       } else {
         this.error_occured = true;
         this.error_message = "Invalid data inside the form. Please correct your form and try again.";

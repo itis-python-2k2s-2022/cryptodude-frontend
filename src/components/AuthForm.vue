@@ -72,16 +72,37 @@ export default {
     }
   },
   methods: {
-    onSubmit(event) {
+    async onSubmit(event) {
       event.preventDefault()
-      // TODO doesnt work because of CORS
-      let response = request.post("/auth/token",
-          {username: this.form.email, password: this.form.password,
-          grant_type: "password"}, );
-      let token = response.data.json.get("access_token")
-      setToken(token)
-      if (token) {
-        this.$router.push({ name: "index" })
+      let response;
+      const params = new URLSearchParams();
+
+      params.append('username', this.form.email);
+      params.append('password', this.form.password);
+      params.append('grant_type', "password");
+
+      try {
+        response = await request.post("/auth/token", params);
+      } catch (e) {
+        if (e.response.status === 401) {
+          this.error_occured = true;
+          this.error_message = "Email or password or both are incorrect";
+        }
+      }
+      if (response.status === 200){
+        console.log(response);
+        console.log(response.data.access_token);
+
+        let token = response.data.access_token || null;
+        console.log(token);
+        setToken(token);
+
+        if (token) {
+          await this.$router.push({name: "index"})
+        } else {
+          this.error_occured = true;
+          this.error_message = "Unknown error. Try again.";
+        }
       } else {
         this.error_occured = true;
         this.error_message = "Email or password or both are incorrect";
