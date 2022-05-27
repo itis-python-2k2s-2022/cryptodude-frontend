@@ -1,9 +1,45 @@
-<script setup>
+<script>
+import { mapActions, mapState } from "pinia/dist/pinia";
+import { useAuthStore } from "./stores/auth";
+import { hasAccessToRoute } from "./services/auth";
+import { getQueryParam } from "./services/utils";
 
+export default {
+  name: "App",
+  computed: {
+    ...mapState(useAuthStore, ['isLoading']),
+  },
+  methods: {
+    ...mapActions(useAuthStore, [
+      'loadProfile', 'displayErrors', 'finishAuth'
+    ]),
+    checkAuth() {
+      if (!hasAccessToRoute(this.isAuthorized, this.$route)) {
+        if (this.$route.meta.userIsAuthenticated) {
+          this.$router.push({name: "welcome"});
+        } else {
+          this.$router.push({name: "index"});
+        }
+      }
+    },
+  },
+  async mounted() {
+    const token = getQueryParam('token');
+    const error = getQueryParam('error');
+
+    this.displayErrors(error);
+    await this.finishAuth(token);
+    await this.loadProfile();
+    this.checkAuth();
+  }
+}
 </script>
 
 <template>
-  <router-view />
+  <b-spinner v-if="isLoading" />
+  <b-container v-else>
+    <router-view />
+  </b-container>
 </template>
 
 <style>

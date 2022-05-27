@@ -3,7 +3,8 @@ import WelcomeView from "../views/Welcome.vue"
 import RegistrationView from "../views/Registration.vue"
 import AuthView from "../views/Auth.vue";
 import MainView from "../views/Main.vue";
-import {getToken} from "../services/auth";
+import {useAuthStore} from "../stores/auth";
+import {hasAccessToRoute} from "../services/auth";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -40,27 +41,16 @@ const router = createRouter({
   ]
 })
 
-// TODO настроить стор чтобы этот код работал
-// router.beforeEach((to, from, next) => {
-//   if (to.matched.some(record => record.meta.userIsAuthenticated)) {
-//     // this route requires auth, check if logged in
-//     // if not, redirect to login page.
-//     if (!false) {
-//       next({ name: 'welcome' })
-//     } else {
-//       next() // go to wherever I'm going
-//     }
-//   } else if (to.matched.some(record => record.meta.userIsAuthenticated === false)) {
-//     // this route requires auth, check if logged in
-//     // if not, redirect to login page.
-//     if (!getToken()) {
-//       next({ name: 'index' })
-//     } else {
-//       next() // go to wherever I'm going
-//     }
-//   } else {
-//     next() // does not require auth and visible for authenticated users
-//   }
-// })
+
+router.beforeEach((to, from, next) => {
+  const authStore = useAuthStore();
+  if (hasAccessToRoute(authStore.isAuthorized, to)) {
+    next();
+  } else if (to.matched.some(record => record.meta.userIsAuthenticated)) {
+    next({ name: 'welcome' });
+  } else {
+    next({ name: 'index' })
+  }
+})
 
 export default router
