@@ -1,10 +1,8 @@
 <template>
   <b-container>
-    <b-button
-      :href="oAuthUrl"
-      size="lg"
-      variant="dark"
-      pill>Log in via google</b-button>
+    <b-button :href="oAuthUrl" size="lg" variant="dark" pill
+      >Log in via google</b-button
+    >
     <p></p>
   </b-container>
 </template>
@@ -16,10 +14,7 @@ export default {
   props: {
     oAuthUrl: String,
   },
-
-}
+};
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

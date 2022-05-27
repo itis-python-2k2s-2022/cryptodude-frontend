@@ -1,12 +1,20 @@
 <template>
   <div>
     <p>
-      This is the most useful thing on the whole Internet! But we should aware you.
-      We have no economic education, so there's no investment recommendations.
-      Please, make a lot of money and then share some with us ;-)
+      This is the most useful thing on the whole Internet! But we should aware
+      you. We have no economic education, so there's no investment
+      recommendations. Please, make a lot of money and then share some with us
+      ;-)
     </p>
     <div class="centered">
-      <b-button pill variant="primary" size="lg" class="btn-custom-blue font-monospace" :to="{ name: 'registration' }"><span>Join now</span></b-button>
+      <b-button
+        pill
+        variant="primary"
+        size="lg"
+        class="btn-custom-blue font-monospace"
+        :to="{ name: 'registration' }"
+        ><span>Join now</span></b-button
+      >
     </div>
   </div>
 </template>
@@ -14,9 +22,8 @@
 <script>
 export default {
   name: "WelcomeBody",
-  components: {}
-
-}
+  components: {},
+};
 </script>
 
 <style scoped>
@@ -35,7 +42,6 @@ span {
   margin: 0.5em;
   font-size: 2.3em;
   font-family: monospace;
-
 }
 
 .centered {

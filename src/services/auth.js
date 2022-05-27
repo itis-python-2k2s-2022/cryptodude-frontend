@@ -1,5 +1,5 @@
 import request from "./api";
-import {CLIENT_ID, FRONTEND_FOR_BACKEND_HOST} from "../constants";
+import { CLIENT_ID, FRONTEND_FOR_BACKEND_HOST } from "../constants";
 
 const CALLBACK_URL = `${FRONTEND_FOR_BACKEND_HOST}/oauth_callback`;
 
@@ -8,11 +8,11 @@ export function getOAuthUrl() {
 }
 
 export function setToken(token) {
-  localStorage.setItem('token', token);
+  localStorage.setItem("token", token);
 }
 
 export function getToken() {
-  return localStorage.getItem('token');
+  return localStorage.getItem("token");
 }
 
 export async function retrieveProfile() {
@@ -21,5 +21,9 @@ export async function retrieveProfile() {
 }
 
 export function hasAccessToRoute(isAuth, route) {
-  return route.name !== undefined && (isAuth === route.meta.userIsAuthenticated && isAuth !== null || route.meta.userIsAuthenticated === undefined);
+  return (
+    route.name !== undefined &&
+    ((isAuth === route.meta.userIsAuthenticated && isAuth !== null) ||
+      route.meta.userIsAuthenticated === undefined)
+  );
 }

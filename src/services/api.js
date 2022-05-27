@@ -6,7 +6,7 @@ const token = getToken();
 const request = axios.create({
   baseURL: BACKEND_HOST,
   headers: {
-    Authorization: `Bearer ${token}`
+    Authorization: `Bearer ${token}`,
   },
 });
 

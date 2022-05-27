@@ -7,7 +7,7 @@ export const useAuthStore = defineStore({
   state: () => ({
     isLoading: true,
     error: null,
-    profile: null
+    profile: null,
   }),
   actions: {
     async loadProfile() {
@@ -24,7 +24,8 @@ export const useAuthStore = defineStore({
     displayErrors(error) {
       if (error) {
         console.error(error);
-        this.error = error === "access_denied"
+        this.error =
+          error === "access_denied"
             ? "Доступ к аккаунту запрещен, попробуйте войти еще раз"
             : "Произошла неизвестная ошибка, попробуйте еще раз";
       }
@@ -33,22 +34,22 @@ export const useAuthStore = defineStore({
       console.log(token);
       if (token !== undefined && token !== null) {
         try {
-          const response = await request.get('/auth/google_token');
+          const response = await request.get("/auth/google_token");
           if (response.status === 200) {
-            const real_token = response.data['access_token'];
+            const real_token = response.data["access_token"];
             setToken(real_token);
-            location.search = '';
+            location.search = "";
           }
         } catch (e) {
           this.error = "Произошла неизвестная ошибка, попробуй еще раз";
           console.error(e);
         }
       }
-    }
+    },
   },
   getters: {
     isAuthorized() {
       return this.profile !== null;
-    }
-  }
+    },
+  },
 });
