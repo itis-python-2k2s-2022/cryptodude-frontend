@@ -1,11 +1,12 @@
 <template>
   <div class="font-monospace">
-    <b-card bg-variant="warning" text-variant="black">
+    <b-card bg-variant="warning" text-variant="black" class="float-lg-none">
       <blockquote class="card-blockquote">
         <p>{{ ptext }}</p>
       </blockquote>
       <b-button @click="onClick" variant="dark" pill>{{ btext }}</b-button>
     </b-card>
+    <p/>
   </div>
 </template>
 
@@ -24,6 +25,7 @@ export default {
     },
   },
   data() {
+    console.log(this.question);
     return {
       ptexts: [this.question, this.answer],
       btexts: ["Show answer", "Show question"],
