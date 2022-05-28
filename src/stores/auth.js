@@ -34,11 +34,14 @@ export const useAuthStore = defineStore({
       console.log(token);
       if (token !== undefined && token !== null) {
         try {
-          const response = await request.get("/auth/google_token");
+          const response = await request.get(
+            `/auth/google_token?token=${token}`
+          );
           if (response.status === 200) {
-            const real_token = response.data["access_token"];
+            const real_token = response.data.access_token;
             setToken(real_token);
             location.search = "";
+            location.hash = "";
           }
         } catch (e) {
           this.error = "Произошла неизвестная ошибка, попробуй еще раз";

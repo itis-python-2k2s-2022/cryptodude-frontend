@@ -7,7 +7,7 @@ import { getQueryParam } from "./services/utils";
 export default {
   name: "App",
   computed: {
-    ...mapState(useAuthStore, ["isLoading"]),
+    ...mapState(useAuthStore, ["isLoading", "profile"]),
   },
   methods: {
     ...mapActions(useAuthStore, ["loadProfile", "displayErrors", "finishAuth"]),
@@ -22,13 +22,18 @@ export default {
     },
   },
   async mounted() {
-    const token = getQueryParam("token");
+    const token = getQueryParam("access_token");
     const error = getQueryParam("error");
-
     this.displayErrors(error);
     await this.finishAuth(token);
-    await this.loadProfile();
+    try {
+      await this.loadProfile();
+    } catch (e) {
+      console.log(e);
+    }
     this.checkAuth();
+    console.log(this.profile);
+    console.log("MOUNTED");
   },
 };
 </script>
