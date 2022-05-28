@@ -3,6 +3,7 @@ import WelcomeView from "../views/Welcome.vue";
 import RegistrationView from "../views/Registration.vue";
 import AuthView from "../views/Auth.vue";
 import MainView from "../views/Main.vue";
+import FAQView from "../views/FAQ.vue";
 import { useAuthStore } from "../stores/auth";
 import { hasAccessToRoute } from "../services/auth";
 
@@ -37,6 +38,11 @@ const router = createRouter({
       meta: {
         userIsAuthenticated: false,
       },
+    },
+    {
+      path: '/faq',
+      name: 'faq',
+      component: FAQView,
     },
   ],
 });
