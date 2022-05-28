@@ -6,10 +6,8 @@
 import WelcomeHeader from "../components/WelcomeHeader.vue";
 export default {
   name: "Main",
-  components: {WelcomeHeader}
-}
+  components: { WelcomeHeader },
+};
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>
