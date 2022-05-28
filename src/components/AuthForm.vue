@@ -100,11 +100,12 @@ export default {
         console.log(response);
         console.log(response.data.access_token);
 
-        let token = response.data.access_token || null;
-        console.log(token);
-        setToken(token);
+        let access_token = response.data.access_token || null;
+        console.log(access_token);
+        setToken(access_token);
 
-        if (token) {
+        if (access_token) {
+          location.reload();
           await this.$router.push({ name: "index" });
         } else {
           this.error_occured = true;
