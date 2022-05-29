@@ -15,6 +15,10 @@ export function getToken() {
   return localStorage.getItem("token");
 }
 
+export function removeToken() {
+  localStorage.removeItem("token")
+}
+
 export async function retrieveProfile() {
   const response = await request.get("/auth/users/me");
   return response.data;

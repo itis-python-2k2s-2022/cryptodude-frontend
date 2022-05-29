@@ -1,12 +1,12 @@
 <template>
-  <WelcomeHeader>This is main page. It's not finished yet...</WelcomeHeader>
+  <MainNavbar/>
 </template>
 
 <script>
-import WelcomeHeader from "../components/WelcomeHeader.vue";
+import MainNavbar from "@/components/MainNavbar.vue";
 export default {
   name: "Main",
-  components: { WelcomeHeader },
+  components: { MainNavbar },
 };
 </script>
 
