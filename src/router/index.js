@@ -4,6 +4,9 @@ import RegistrationView from "../views/Registration.vue";
 import AuthView from "../views/Auth.vue";
 import MainView from "../views/Main.vue";
 import FAQView from "../views/FAQ.vue";
+import CryptoCurrencies from "../views/CryptoCurrencies.vue";
+import Exchanges from "../views/Exchanges.vue";
+import Profile from "../views/Profile.vue";
 import { useAuthStore } from "../stores/auth";
 import { hasAccessToRoute } from "../services/auth";
 
@@ -44,20 +47,20 @@ const router = createRouter({
     {
       path: '/users/me',
       name: 'profile',
-      component: FAQView,
+      component: Profile,
       meta: {
         userIsAuthenticated: false,
       },
     },
     {
       path: '/exchanges',
-      name: 'profile',
-      component: FAQView,
+      name: 'exchages',
+      component: Exchanges,
     },
     {
       path: '/cryptocurrencies',
-      name: 'profile',
-      component: FAQView,
+      name: 'cryptocurrencies',
+      component: CryptoCurrencies,
     },
   ],
 });
