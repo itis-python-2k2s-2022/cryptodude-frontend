@@ -1,9 +1,4 @@
 import { createRouter, createWebHistory } from "vue-router";
-import WelcomeView from "../views/Welcome.vue";
-import RegistrationView from "../views/Registration.vue";
-import AuthView from "../views/Auth.vue";
-import MainView from "../views/Main.vue";
-import FAQView from "../views/FAQ.vue";
 import CryptoCurrencies from "../views/CryptoCurrencies.vue";
 import Exchanges from "../views/Exchanges.vue";
 import Profile from "../views/Profile.vue";
@@ -16,17 +11,17 @@ const router = createRouter({
     {
       path: "/",
       name: "index",
-      component: MainView,
+      component: () => import('../views/Main.vue'),
     },
     {
       path: "/welcome",
       name: "welcome",
-      component: WelcomeView,
+      component: () => import('../views/Welcome.vue'),
     },
     {
       path: "/sign_up",
       name: "registration",
-      component: RegistrationView,
+      component: () => import('../views/Registration.vue'),
       meta: {
         userIsAuthenticated: false,
       },
@@ -34,7 +29,7 @@ const router = createRouter({
     {
       path: "/sign_in",
       name: "auth",
-      component: AuthView,
+      component: () => import('../views/Auth.vue'),
       meta: {
         userIsAuthenticated: false,
       },
@@ -42,26 +37,41 @@ const router = createRouter({
     {
       path: '/faq',
       name: 'faq',
-      component: FAQView,
+      component: () => import('../views/FAQ.vue'),
     },
     {
       path: '/users/me',
       name: 'profile',
-      component: Profile,
+      component: () => import('../views/Profile.vue'),
       meta: {
-        userIsAuthenticated: false,
+        userIsAuthenticated: true,
       },
+      children: [
+        {
+          path: '/users/me/edit',
+          name: 'profile_edit',
+          component: () => import('../views/ProfileEdit.vue'),
+          meta: {
+            userIsAuthenticated: true,
+          },
+        },
+      ]
     },
     {
       path: '/exchanges',
-      name: 'exchages',
-      component: Exchanges,
+      name: 'exchanges',
+      component: () => import('../views/Exchanges.vue'),
     },
     {
       path: '/cryptocurrencies',
       name: 'cryptocurrencies',
-      component: CryptoCurrencies,
+      component: () => import('../views/CryptoCurrencies.vue'),
     },
+    {
+      path: '/cryptocurrencies/hot_offers',
+      name: 'hot_offers',
+      component: () => import('../views/HotOffers.vue'),
+    }
   ],
 });
 
