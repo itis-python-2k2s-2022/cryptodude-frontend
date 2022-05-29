@@ -14,9 +14,6 @@ const router = createRouter({
       path: "/",
       name: "index",
       component: MainView,
-      meta: {
-        userIsAuthenticated: true,
-      },
     },
     {
       path: "/welcome",
@@ -44,6 +41,24 @@ const router = createRouter({
       name: 'faq',
       component: FAQView,
     },
+    {
+      path: '/users/me',
+      name: 'profile',
+      component: FAQView,
+      meta: {
+        userIsAuthenticated: false,
+      },
+    },
+    {
+      path: '/exchanges',
+      name: 'profile',
+      component: FAQView,
+    },
+    {
+      path: '/cryptocurrencies',
+      name: 'profile',
+      component: FAQView,
+    },
   ],
 });
 
@@ -51,8 +66,6 @@ router.beforeEach((to, from, next) => {
   const authStore = useAuthStore();
   if (hasAccessToRoute(authStore.isAuthorized, to)) {
     next();
-  } else if (to.matched.some((record) => record.meta.userIsAuthenticated)) {
-    next({ name: "welcome" });
   } else {
     next({ name: "index" });
   }
