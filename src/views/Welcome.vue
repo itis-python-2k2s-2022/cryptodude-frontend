@@ -10,7 +10,6 @@
 <script>
 import WelcomeHeader from "@/components/WelcomeHeader.vue";
 import WelcomeBody from "@/components/WelcomeBody.vue";
-import { BContainer } from "bootstrap-vue-3";
 export default {
   name: "Welcome",
   components: { WelcomeHeader, WelcomeBody },

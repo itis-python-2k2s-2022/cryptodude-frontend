@@ -1,5 +1,5 @@
 <script>
-import { mapActions, mapState } from "pinia/dist/pinia";
+import {mapActions, mapGetters, mapState} from "pinia/dist/pinia";
 import { useAuthStore } from "./stores/auth";
 import { hasAccessToRoute } from "./services/auth";
 import { getQueryParam } from "./services/utils";
@@ -8,16 +8,14 @@ export default {
   name: "App",
   computed: {
     ...mapState(useAuthStore, ["isLoading", "profile"]),
+    ...mapGetters(useAuthStore, ["isAuthorized"])
   },
   methods: {
     ...mapActions(useAuthStore, ["loadProfile", "displayErrors", "finishAuth"]),
     checkAuth() {
       if (!hasAccessToRoute(this.isAuthorized, this.$route)) {
-        if (this.$route.meta.userIsAuthenticated) {
-          this.$router.push({ name: "welcome" });
-        } else {
-          this.$router.push({ name: "index" });
-        }
+        console.log(this.isAuthorized, this.$route, "AUF")
+        this.$router.push({ name: "index" });
       }
     },
   },
@@ -40,9 +38,9 @@ export default {
 
 <template>
   <b-spinner v-if="isLoading" />
-  <b-container v-else>
+  <div v-else>
     <router-view />
-  </b-container>
+  </div>
 </template>
 
 <style>

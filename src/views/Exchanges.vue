@@ -4,10 +4,14 @@
 
 <script>
 import MainNavbar from "@/components/MainNavbar.vue";
+
 export default {
-  name: "Main",
+  name: "Exchanges",
   components: { MainNavbar },
-};
+
+}
 </script>
 
-<style scoped></style>
+<style scoped>
+
+</style>

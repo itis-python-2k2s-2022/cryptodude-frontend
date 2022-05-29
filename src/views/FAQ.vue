@@ -1,4 +1,5 @@
 <template>
+  <MainNavbar/>
   <b-container>
     <WelcomeHeader>FAQ</WelcomeHeader>
     <p/>
@@ -17,11 +18,12 @@
 import {ref} from "vue";
 import WelcomeHeader from "@/components/WelcomeHeader.vue";
 import FAQCard from "@/components/FAQCard.vue";
+import MainNavbar from "@/components/MainNavbar.vue";
 import {getFAQuestions} from "../services/faq";
 
 export default {
   name: "FAQ",
-  components: { WelcomeHeader, FAQCard },
+  components: { WelcomeHeader, FAQCard, MainNavbar },
 
   data() {
     const isLoading = ref(true);
