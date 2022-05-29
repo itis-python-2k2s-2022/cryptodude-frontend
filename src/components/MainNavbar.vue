@@ -27,10 +27,11 @@
 
           <li class="nav-item dropdown-menu-end" aria-expanded="false">
             <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Me
+              <span v-if="isAuthorized"><b-img v-bind="mainProps" rounded="circle" alt="Circle image"></b-img>&nbsp;{{ profile.name }}</span>
+              <span v-else>Me</span>
             </a>
             <ul class="dropdown-menu dropdown-menu-lg-end" aria-labelledby="navbarScrollingDropdown">
-              <li v-if="!isAuthorized">
+          <li v-if="!isAuthorized">
                 <router-link :to="{ name: 'registration' }" class="dropdown-item">Sign up</router-link>
               </li>
               <li v-if="!isAuthorized">
@@ -56,13 +57,14 @@
 
 <script>
 import {BButton, BCollapse, BContainer, BDropdown, BLink, BNav} from "bootstrap-vue-3";
-import {mapGetters} from "pinia/dist/pinia";
+import {mapGetters, mapState} from "pinia/dist/pinia";
 import {useAuthStore} from "../stores/auth";
 import {removeToken} from "../services/auth";
 export default {
   name: "MainNavbar",
   components: {BLink, BButton, BDropdown, BCollapse, BContainer, BNav},
   computed: {
+    ...mapState(useAuthStore, ["profile"]),
     ...mapGetters(useAuthStore, ["isAuthorized"]),
   },
   methods: {
@@ -70,8 +72,13 @@ export default {
       removeToken();
       location.reload();
       this.$router.push({ name: 'index' });
+    },
+  },
+  data() {
+    return {
+      mainProps: { blank: true, blankColor: '#777', width: 25, height: 25, class: 'm1' },
     }
-  }
+  },
 }
 </script>
 
