@@ -90,30 +90,33 @@ export default {
 
       try {
         response = await request.post("/auth/token", params);
+        if (response.status === 200) {
+          console.log(response);
+          console.log(response.data.access_token);
+
+          let access_token = response.data.access_token || null;
+          console.log(access_token);
+          setToken(access_token);
+
+          if (access_token) {
+            location.reload();
+            await this.$router.push({ name: "index" });
+          } else {
+            this.error_occured = true;
+            this.error_message = "Unknown error. Try again.";
+          }
+        } else {
+          this.error_occured = true;
+          this.error_message = "Email or password or both are incorrect";
+        }
       } catch (e) {
         if (e.response.status === 401) {
           this.error_occured = true;
           this.error_message = "Email or password or both are incorrect";
-        }
-      }
-      if (response.status === 200) {
-        console.log(response);
-        console.log(response.data.access_token);
-
-        let access_token = response.data.access_token || null;
-        console.log(access_token);
-        setToken(access_token);
-
-        if (access_token) {
-          location.reload();
-          await this.$router.push({ name: "index" });
         } else {
           this.error_occured = true;
           this.error_message = "Unknown error. Try again.";
         }
-      } else {
-        this.error_occured = true;
-        this.error_message = "Email or password or both are incorrect";
       }
     },
     onReset(event) {
