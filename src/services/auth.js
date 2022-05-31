@@ -20,7 +20,7 @@ export function removeToken() {
 }
 
 export async function retrieveProfile() {
-  const response = await request.get("/auth/users/me");
+  const response = await request.get("/users/me");
   return response.data;
 }
 

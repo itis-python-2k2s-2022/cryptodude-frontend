@@ -1,3 +1,5 @@
+import { BACKEND_HOST } from "../constants";
+
 export function getQueryParam(paramName) {
   const queryString =
     location.search !== ""
@@ -10,4 +12,8 @@ export function getQueryParam(paramName) {
     return null;
   }
   return codeParam[0][1];
+}
+
+export function getURLForImage(imagePath) {
+  return imagePath !== null && imagePath !== undefined ? `${BACKEND_HOST}/storage/${imagePath}` : "https://placekitten.com/500/500";
 }

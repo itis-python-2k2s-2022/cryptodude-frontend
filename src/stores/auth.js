@@ -54,5 +54,8 @@ export const useAuthStore = defineStore({
     isAuthorized() {
       return this.profile !== null;
     },
+    currentUser() {
+      return this.profile;
+    },
   },
 });

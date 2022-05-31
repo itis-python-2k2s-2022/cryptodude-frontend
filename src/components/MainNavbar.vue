@@ -27,7 +27,7 @@
 
           <li class="nav-item dropdown-menu-end" aria-expanded="false">
             <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              <span v-if="isAuthorized"><b-img v-bind="mainProps" rounded="circle" alt="Circle image"></b-img>&nbsp;{{ profile.name }}</span>
+              <span v-if="isAuthorized"><b-avatar :src="usrImgSrc" size="1.5rem"></b-avatar>&nbsp;{{ profile.name }}</span>
               <span v-else>Me</span>
             </a>
             <ul class="dropdown-menu dropdown-menu-lg-end" aria-labelledby="navbarScrollingDropdown">
@@ -60,12 +60,16 @@ import {BButton, BCollapse, BContainer, BDropdown, BLink, BNav} from "bootstrap-
 import {mapGetters, mapState} from "pinia/dist/pinia";
 import {useAuthStore} from "../stores/auth";
 import {removeToken} from "../services/auth";
+import {getURLForImage} from "../services/utils";
 export default {
   name: "MainNavbar",
   components: {BLink, BButton, BDropdown, BCollapse, BContainer, BNav},
   computed: {
     ...mapState(useAuthStore, ["profile"]),
-    ...mapGetters(useAuthStore, ["isAuthorized"]),
+    ...mapGetters(useAuthStore, ["isAuthorized", "currentUser"]),
+    usrImgSrc() {
+      return getURLForImage(this.currentUser.photo)
+    }
   },
   methods: {
     onLogOutClick(event) {
@@ -73,11 +77,6 @@ export default {
       location.reload();
       this.$router.push({ name: 'index' });
     },
-  },
-  data() {
-    return {
-      mainProps: { blank: true, blankColor: '#777', width: 25, height: 25, class: 'm1' },
-    }
   },
 }
 </script>

@@ -46,16 +46,14 @@ const router = createRouter({
       meta: {
         userIsAuthenticated: true,
       },
-      children: [
-        {
-          path: '/users/me/edit',
-          name: 'profile_edit',
-          component: () => import('../views/ProfileEdit.vue'),
-          meta: {
-            userIsAuthenticated: true,
-          },
-        },
-      ]
+    },
+    {
+      path: '/users/me/edit',
+      name: 'profile_edit',
+      component: () => import('../views/ProfileEdit.vue'),
+      meta: {
+        userIsAuthenticated: true,
+      },
     },
     {
       path: '/exchanges',
@@ -77,6 +75,7 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
   const authStore = useAuthStore();
+  console.log(`user is auth - ${authStore.isAuthorized}`)
   if (hasAccessToRoute(authStore.isAuthorized, to)) {
     next();
   } else {
