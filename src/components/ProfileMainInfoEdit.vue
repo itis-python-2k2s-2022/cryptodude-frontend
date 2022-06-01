@@ -39,7 +39,7 @@
           class="form-control"
           accept="image/*"
           id="input-avatar"
-          @change="form.photo"
+          @change="onFileSelected"
         />
       </b-form-group>
       <b-button-group size="lg" class="float-lg-end" pill>
@@ -91,12 +91,15 @@ export default {
     },
   },
   methods: {
+    onFileSelected(event) {
+      this.form.photo = event.target.files[0];
+    },
     async onSubmit(event) {
       event.preventDefault();
       if (this.nicknameState) {
         console.log(this.form.photo);
         const formData = new FormData();
-        formData.append("photo", this.form.photo);
+        formData.append("photo", this.form.photo, this.form.photo.name);
         try {
           const response = await request.post(
             `/users/me/edit?name=${this.form.name}`,
