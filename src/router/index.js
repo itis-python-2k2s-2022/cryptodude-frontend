@@ -61,6 +61,11 @@ const router = createRouter({
       component: () => import('../views/Exchanges.vue'),
     },
     {
+      path: '/exchanges/:id',
+      name: 'exchange',
+      component: () => import('../views/Exchange.vue')
+    },
+    {
       path: '/cryptocurrencies',
       name: 'cryptocurrencies',
       component: () => import('../views/CryptoCurrencies.vue'),
