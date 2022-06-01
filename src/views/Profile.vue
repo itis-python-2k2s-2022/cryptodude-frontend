@@ -1,35 +1,38 @@
 <template>
-  <MainNavbar/>
+  <MainNavbar />
 
   <b-container>
-    <p/>
+    <p />
     <BRow>
-      <ProfileMainInfo :user="currentUser"/>
+      <ProfileMainInfo :user="currentUser" />
     </BRow>
-    <p/>
-    <div v-if="isLoading"> Loading ... </div>
-    <div v-else-if="error"> {{ error.message }} <button @click="loadSubs">try again</button> </div>
+    <p />
+    <div v-if="isLoading">Loading ...</div>
+    <div v-else-if="error">
+      {{ error.message }} <button @click="loadSubs">try again</button>
+    </div>
     <div v-else>
       <ProfileSubscriptions
-          :crypto_items="cryptoSubs"
-          :exchange_items="exchangeSubs"/>
+        :crypto_items="cryptoSubs"
+        :exchange_items="exchangeSubs"
+      />
     </div>
   </b-container>
 </template>
 
 <script>
 import MainNavbar from "@/components/MainNavbar.vue";
-import {mapGetters} from "pinia/dist/pinia";
-import {useAuthStore} from "../stores/auth";
+import { mapGetters } from "pinia/dist/pinia";
+import { useAuthStore } from "../stores/auth";
 import ProfileMainInfo from "@/components/ProfileMainInfo.vue";
 import ProfileSubscriptions from "@/components/ProfileSubscriptions.vue";
 
-import {getCryptoSubs, getExchangeSubs} from "../services/profile";
-import {ref} from "vue";
+import { getCryptoSubs, getExchangeSubs } from "../services/profile";
+import { ref } from "vue";
 
 export default {
   name: "Profile",
-  components: {ProfileSubscriptions, ProfileMainInfo, MainNavbar },
+  components: { ProfileSubscriptions, ProfileMainInfo, MainNavbar },
   computed: {
     ...mapGetters(useAuthStore, ["currentUser"]),
   },
@@ -53,11 +56,8 @@ export default {
   },
   async mounted() {
     await this.loadSubs();
-  }
-
-}
+  },
+};
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

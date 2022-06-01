@@ -6,7 +6,7 @@
       </blockquote>
       <b-button @click="onClick" variant="dark" pill>{{ btext }}</b-button>
     </b-card>
-    <p/>
+    <p />
   </div>
 </template>
 
@@ -17,11 +17,11 @@ export default {
   props: {
     question: {
       type: String,
-      required: true
+      required: true,
     },
     answer: {
       type: String,
-      required: true
+      required: true,
     },
   },
   data() {
@@ -29,25 +29,23 @@ export default {
     return {
       ptexts: [this.question, this.answer],
       btexts: ["Show answer", "Show question"],
-      idx: 0
-    }
+      idx: 0,
+    };
   },
   computed: {
     ptext() {
-      return this.ptexts[this.idx]
+      return this.ptexts[this.idx];
     },
     btext() {
-      return this.btexts[this.idx]
-    }
+      return this.btexts[this.idx];
+    },
   },
   methods: {
     onClick(event) {
-      this.idx = (this.idx + 1) % 2
-    }
-  }
-}
+      this.idx = (this.idx + 1) % 2;
+    },
+  },
+};
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

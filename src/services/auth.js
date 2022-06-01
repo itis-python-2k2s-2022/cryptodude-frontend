@@ -16,7 +16,7 @@ export function getToken() {
 }
 
 export function removeToken() {
-  localStorage.removeItem("token")
+  localStorage.removeItem("token");
 }
 
 export async function retrieveProfile() {

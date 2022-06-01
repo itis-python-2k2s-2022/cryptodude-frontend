@@ -1,6 +1,15 @@
 <template>
   <div>
-    <b-table striped hover borderless fixed head-variant="dark" table-variant="dark" :items="items" :fields="fields"></b-table>
+    <b-table
+      striped
+      hover
+      borderless
+      fixed
+      head-variant="dark"
+      table-variant="dark"
+      :items="items"
+      :fields="fields"
+    ></b-table>
   </div>
 </template>
 
@@ -10,10 +19,8 @@ export default {
   props: {
     items: Array,
     fields: Array,
-  }
-}
+  },
+};
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

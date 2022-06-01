@@ -1,13 +1,13 @@
 <template>
-  <MainNavbar/>
+  <MainNavbar />
 
   <b-container>
-    <p/>
+    <p />
     <BRow>
-      <ProfileMainInfoEdit :user="currentUser"/>
+      <ProfileMainInfoEdit :user="currentUser" />
     </BRow>
-    <p/>
-    <ProfilePasswordEdit/>
+    <p />
+    <ProfilePasswordEdit />
   </b-container>
 </template>
 
@@ -15,19 +15,16 @@
 import ProfileMainInfoEdit from "@/components/ProfileMainInfoEdit.vue";
 import ProfilePasswordEdit from "@/components/ProfilePasswordEdit.vue";
 import MainNavbar from "@/components/MainNavbar.vue";
-import {mapGetters, mapState} from "pinia/dist/pinia";
-import {useAuthStore} from "../stores/auth";
+import { mapGetters, mapState } from "pinia/dist/pinia";
+import { useAuthStore } from "../stores/auth";
 
 export default {
   name: "ProfileEdit",
-  components: {ProfilePasswordEdit, ProfileMainInfoEdit, MainNavbar },
+  components: { ProfilePasswordEdit, ProfileMainInfoEdit, MainNavbar },
   computed: {
     ...mapGetters(useAuthStore, ["currentUser"]),
   },
-
-}
+};
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

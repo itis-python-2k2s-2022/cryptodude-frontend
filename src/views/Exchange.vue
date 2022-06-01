@@ -1,14 +1,27 @@
 <template>
-  <MainNavbar/>
+  <MainNavbar />
 
   <b-container>
-    <p/>
-    <div v-if="isLoading"> Loading ... </div>
-    <div v-else-if="error"> {{ error.message }} <button @click="loadExs">try again</button> </div>
+    <p />
+    <div v-if="isLoading">Loading ...</div>
+    <div v-else-if="error">
+      {{ error.message }} <button @click="loadExs">try again</button>
+    </div>
     <div v-else>
-      <TableOfSmth striped hover borderless fixed head-variant="dark" table-variant="dark" :items="exchanges" :fields="fields">
+      <TableOfSmth
+        striped
+        hover
+        borderless
+        fixed
+        head-variant="dark"
+        table-variant="dark"
+        :items="exchanges"
+        :fields="fields"
+      >
         <template #cell(id)="data">
-          <router-link :to="{name: 'exchange', params: {id: data}}">{{ data}}</router-link>
+          <router-link :to="{ name: 'exchange', params: { id: data } }">{{
+            data
+          }}</router-link>
         </template>
       </TableOfSmth>
     </div>
@@ -19,8 +32,8 @@
 import MainNavbar from "@/components/MainNavbar.vue";
 import TableOfSmth from "@/components/TableOfSmth.vue";
 
-import {ref} from "vue";
-import {getAllExchanges} from "../services/crypto";
+import { ref } from "vue";
+import { getAllExchanges } from "../services/crypto";
 
 export default {
   name: "Exchange",
@@ -29,14 +42,14 @@ export default {
     const fields = [
       {
         key: "id",
-        label: 'Page',
+        label: "Page",
       },
-        "name",
-        "url",
-        "maker_fee",
-        "taker_fee",
-        "fee_url"
-  ]
+      "name",
+      "url",
+      "maker_fee",
+      "taker_fee",
+      "fee_url",
+    ];
     const isLoading = ref(true);
     const error = ref(null);
     const exchanges = ref(null);
@@ -50,15 +63,12 @@ export default {
       }
     };
 
-    return { isLoading, error, exchanges, loadExs , fields};
+    return { isLoading, error, exchanges, loadExs, fields };
   },
   async mounted() {
     await this.loadExs();
-  }
-
-}
+  },
+};
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

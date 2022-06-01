@@ -11,17 +11,17 @@ const router = createRouter({
     {
       path: "/",
       name: "index",
-      component: () => import('../views/Main.vue'),
+      component: () => import("../views/Main.vue"),
     },
     {
       path: "/welcome",
       name: "welcome",
-      component: () => import('../views/Welcome.vue'),
+      component: () => import("../views/Welcome.vue"),
     },
     {
       path: "/sign_up",
       name: "registration",
-      component: () => import('../views/Registration.vue'),
+      component: () => import("../views/Registration.vue"),
       meta: {
         userIsAuthenticated: false,
       },
@@ -29,58 +29,58 @@ const router = createRouter({
     {
       path: "/sign_in",
       name: "auth",
-      component: () => import('../views/Auth.vue'),
+      component: () => import("../views/Auth.vue"),
       meta: {
         userIsAuthenticated: false,
       },
     },
     {
-      path: '/faq',
-      name: 'faq',
-      component: () => import('../views/FAQ.vue'),
+      path: "/faq",
+      name: "faq",
+      component: () => import("../views/FAQ.vue"),
     },
     {
-      path: '/users/me',
-      name: 'profile',
-      component: () => import('../views/Profile.vue'),
+      path: "/users/me",
+      name: "profile",
+      component: () => import("../views/Profile.vue"),
       meta: {
         userIsAuthenticated: true,
       },
     },
     {
-      path: '/users/me/edit',
-      name: 'profile_edit',
-      component: () => import('../views/ProfileEdit.vue'),
+      path: "/users/me/edit",
+      name: "profile_edit",
+      component: () => import("../views/ProfileEdit.vue"),
       meta: {
         userIsAuthenticated: true,
       },
     },
     {
-      path: '/exchanges',
-      name: 'exchanges',
-      component: () => import('../views/Exchanges.vue'),
+      path: "/exchanges",
+      name: "exchanges",
+      component: () => import("../views/Exchanges.vue"),
     },
     {
-      path: '/exchanges/:id',
-      name: 'exchange',
-      component: () => import('../views/Exchange.vue')
+      path: "/exchanges/:id",
+      name: "exchange",
+      component: () => import("../views/Exchange.vue"),
     },
     {
-      path: '/cryptocurrencies',
-      name: 'cryptocurrencies',
-      component: () => import('../views/CryptoCurrencies.vue'),
+      path: "/cryptocurrencies",
+      name: "cryptocurrencies",
+      component: () => import("../views/CryptoCurrencies.vue"),
     },
     {
-      path: '/cryptocurrencies/hot_offers',
-      name: 'hot_offers',
-      component: () => import('../views/HotOffers.vue'),
-    }
+      path: "/cryptocurrencies/hot_offers",
+      name: "hot_offers",
+      component: () => import("../views/HotOffers.vue"),
+    },
   ],
 });
 
 router.beforeEach((to, from, next) => {
   const authStore = useAuthStore();
-  console.log(`user is auth - ${authStore.isAuthorized}`)
+  console.log(`user is auth - ${authStore.isAuthorized}`);
   if (hasAccessToRoute(authStore.isAuthorized, to)) {
     next();
   } else {

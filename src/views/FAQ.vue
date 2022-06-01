@@ -1,25 +1,28 @@
 <template>
-  <MainNavbar/>
+  <MainNavbar />
   <b-container>
     <WelcomeHeader>FAQ</WelcomeHeader>
-    <p/>
-      <div v-if="isLoading"> Loading ... </div>
-      <div v-else-if="error"> {{ error.message }} <button @click="loadFAQ">try again</button> </div>
-      <div v-else>
-        <FAQCard
-          v-for="faquestion in fAQuestions"
-          :question="faquestion.question"
-          :answer="faquestion.answer"/>
-      </div>
+    <p />
+    <div v-if="isLoading">Loading ...</div>
+    <div v-else-if="error">
+      {{ error.message }} <button @click="loadFAQ">try again</button>
+    </div>
+    <div v-else>
+      <FAQCard
+        v-for="faquestion in fAQuestions"
+        :question="faquestion.question"
+        :answer="faquestion.answer"
+      />
+    </div>
   </b-container>
 </template>
 
 <script>
-import {ref} from "vue";
+import { ref } from "vue";
 import WelcomeHeader from "@/components/WelcomeHeader.vue";
 import FAQCard from "@/components/FAQCard.vue";
 import MainNavbar from "@/components/MainNavbar.vue";
-import {getFAQuestions} from "../services/faq";
+import { getFAQuestions } from "../services/faq";
 
 export default {
   name: "FAQ",
@@ -43,11 +46,8 @@ export default {
   },
   async mounted() {
     await this.loadFAQ();
-  }
-
-}
+  },
+};
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

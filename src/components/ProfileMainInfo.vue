@@ -1,11 +1,12 @@
 <template>
   <b-card
-      :img-src="userImageSrc"
-      img-alt="Card image"
-      img-left
-      img-height="280"
-      img-width="280"
-      class="bg-dark text-light font-monospace">
+    :img-src="userImageSrc"
+    img-alt="Card image"
+    img-left
+    img-height="280"
+    img-width="280"
+    class="bg-dark text-light font-monospace"
+  >
     <b-card-text>
       <h3>
         Name: <b>{{ user.name }}</b>
@@ -21,7 +22,7 @@
 </template>
 
 <script>
-import {getURLForImage} from "../services/utils";
+import { getURLForImage } from "../services/utils";
 export default {
   name: "ProfileMainInfo",
   props: {
@@ -33,11 +34,9 @@ export default {
   data() {
     return {
       userImageSrc: getURLForImage(this.user.photo),
-    }
+    };
   },
-}
+};
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>
