@@ -35,7 +35,7 @@ export const useAuthStore = defineStore({
       if (token !== undefined && token !== null) {
         try {
           const response = await request.get(
-            `/auth/google_token?token=${token}`
+            `/auth/google_token?access_token=${token}`
           );
           if (response.status === 200) {
             const real_token = response.data.access_token;
