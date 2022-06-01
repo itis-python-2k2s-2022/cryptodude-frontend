@@ -57,6 +57,9 @@ export default {
       isLoading.value = true;
       try {
         exchanges.value = await getAllExchanges();
+        // exchanges.value = [{
+        //   id: 123, name: "Mrs.Mom", url: 'google.com', maker_fee: 12, taker_fee: 22, fee_url: ''
+        // }]
         isLoading.value = false;
       } catch (e) {
         error.value = e;
