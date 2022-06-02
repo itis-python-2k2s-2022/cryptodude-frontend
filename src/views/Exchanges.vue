@@ -8,22 +8,26 @@
       {{ error.message }} <button @click="loadExs">try again</button>
     </div>
     <div v-else>
-      <TableOfSmth
-        striped
-        hover
-        borderless
-        fixed
-        head-variant="dark"
-        table-variant="dark"
-        :items="exchanges"
-        :fields="fields"
-      >
-        <template #cell(id)="data">
-          <router-link :to="{ name: 'exchange', params: { id: data } }">{{
-            data
-          }}</router-link>
-        </template>
-      </TableOfSmth>
+      <div class="bg-warning">
+        <b-table
+          hover
+          borderless
+          variant="dark"
+          head-variant="dark"
+          table-variant="success"
+          :items="exchanges"
+          :fields="fields"
+        >
+          <template #cell(name)="data">
+            <router-link :to="{ name: 'exchange', params: { id: data.item.id } }">{{
+              data.value
+            }}</router-link>
+          </template>
+          <template #cell(fee_url)="data">
+            <b-link :href="data.value" target="_blank">Подробнее</b-link>
+          </template>
+        </b-table>
+      </div>
     </div>
   </b-container>
 </template>
@@ -34,15 +38,19 @@ import TableOfSmth from "@/components/TableOfSmth.vue";
 
 import { ref } from "vue";
 import { getAllExchanges } from "../services/crypto";
+import {getURLForImage} from "../services/utils";
 
 export default {
   name: "Exchanges",
-  components: { TableOfSmth, MainNavbar },
+  components: { MainNavbar },
   data() {
     const fields = [
       {
-        key: "id",
-        label: "Page",
+        key: 'logo',
+        label: '',
+        formatter: (value, key, item) => {
+          return getURLForImage(value)
+        },
       },
       "name",
       "url",
@@ -57,9 +65,6 @@ export default {
       isLoading.value = true;
       try {
         exchanges.value = await getAllExchanges();
-        // exchanges.value = [{
-        //   id: 123, name: "Mrs.Mom", url: 'google.com', maker_fee: 12, taker_fee: 22, fee_url: ''
-        // }]
         isLoading.value = false;
       } catch (e) {
         error.value = e;

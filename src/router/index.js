@@ -1,7 +1,4 @@
 import { createRouter, createWebHistory } from "vue-router";
-import CryptoCurrencies from "../views/CryptoCurrencies.vue";
-import Exchanges from "../views/Exchanges.vue";
-import Profile from "../views/Profile.vue";
 import { useAuthStore } from "../stores/auth";
 import { hasAccessToRoute } from "../services/auth";
 
@@ -69,6 +66,11 @@ const router = createRouter({
       path: "/cryptocurrencies",
       name: "cryptocurrencies",
       component: () => import("../views/CryptoCurrencies.vue"),
+    },
+    {
+      path: "/cryptocurrencies/:id",
+      name: "currency",
+      component: () => import("../views/Currency.vue"),
     },
     {
       path: "/cryptocurrencies/hot_offers",
