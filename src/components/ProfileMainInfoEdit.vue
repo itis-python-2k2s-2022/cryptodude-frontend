@@ -55,6 +55,8 @@
 import { getURLForImage } from "../services/utils";
 import { BFormInput } from "bootstrap-vue-3";
 import request from "../services/api";
+import {mapActions} from "pinia/dist/pinia";
+import {useAuthStore} from "../stores/auth";
 export default {
   name: "ProfileMainInfoEdit",
   components: { BFormInput },
@@ -69,7 +71,7 @@ export default {
     return {
       userImageSrc: getURLForImage(this.user.photo),
       form: {
-        name: "",
+        name: this.user.name,
         photo: null,
       },
       error_occured: false,
@@ -91,6 +93,7 @@ export default {
     },
   },
   methods: {
+    ...mapActions(useAuthStore, ["loadProfile"]),
     onFileSelected(event) {
       this.form.photo = event.target.files[0];
     },
@@ -99,7 +102,11 @@ export default {
       if (this.nicknameState) {
         console.log(this.form.photo);
         const formData = new FormData();
-        formData.append("photo", this.form.photo, this.form.photo.name);
+        if (this.form.photo) {
+          formData.append("photo", this.form.photo, this.form.photo.name);
+        } else {
+          formData.append("photo", "");
+        }
         try {
           const response = await request.post(
             `/users/me/edit?name=${this.form.name}`,
@@ -108,6 +115,11 @@ export default {
           console.log(response);
           if (response.status === 200) {
             window.alert("Profile successfully changed!");
+            try {
+              await this.loadProfile();
+            } catch (e) {
+              console.log(e);
+            }
             await this.$router.push({ name: "profile" });
           }
         } catch (e) {
@@ -125,7 +137,7 @@ export default {
     onReset(event) {
       event.preventDefault();
       // Reset our form values
-      this.form.name = "";
+      this.form.name = this.user.name;
       this.form.photo = null;
       // Trick to reset/clear native browser form validation state
       this.show = false;
