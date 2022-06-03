@@ -19,3 +19,11 @@ export async function getCurrency(id) {
   const response = await request.get(`/crypto/${id}`);
   return response.data;
 }
+
+export async function getPrices(currency = 'all', exchange = 'all') {
+  const now = new Date();
+  const yesterday = new Date();
+  yesterday.setDate(now.getDate() - 1);
+  const response = await request.get(`/crypto_api/price_history?exchange=${exchange}&currency=${currency}&start_time=${yesterday.toISOString()}&end_time=${now.toISOString()}`);
+  return response.data;
+}
