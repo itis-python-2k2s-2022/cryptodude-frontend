@@ -10,7 +10,7 @@
   <b-card-body>
   <b-card-text>
     <h3>
-      Currency&nbsp;-&nbsp;{{ offer.name_tag }}&nbsp;-&nbsp;{{ offer.price }}&nbsp;
+      Currency&nbsp;-&nbsp;{{ offer.name_tag }}:&nbsp;{{ offer.price }}&nbsp;
       <b-badge v-if="changeIsPos(offer.change)" variant="success">{{ absChange(offer.change) }}%</b-badge>
       <b-badge v-if="changeIsNeg(offer.change)" variant="danger">{{ absChange(offer.change) }}%</b-badge>
       <b-badge v-if="changeIsNeu(offer.change)" variant="secondary">{{ absChange(offer.change) }}%</b-badge>
