@@ -15,7 +15,7 @@
 import ProfileMainInfoEdit from "@/components/ProfileMainInfoEdit.vue";
 import ProfilePasswordEdit from "@/components/ProfilePasswordEdit.vue";
 import MainNavbar from "@/components/MainNavbar.vue";
-import { mapGetters, mapState } from "pinia/dist/pinia";
+import { mapGetters } from "pinia/dist/pinia";
 import { useAuthStore } from "../stores/auth";
 
 export default {

@@ -55,8 +55,8 @@
 import { getURLForImage } from "../services/utils";
 import { BFormInput } from "bootstrap-vue-3";
 import request from "../services/api";
-import {mapActions} from "pinia/dist/pinia";
-import {useAuthStore} from "../stores/auth";
+import { mapActions } from "pinia/dist/pinia";
+import { useAuthStore } from "../stores/auth";
 export default {
   name: "ProfileMainInfoEdit",
   components: { BFormInput },

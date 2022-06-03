@@ -6,10 +6,12 @@
       borderless
       fixed
       head-variant="dark"
-      table-variant="dark"
+      table-variant="success"
       :items="items"
       :fields="fields"
-    ></b-table>
+    >
+      <slot> </slot>
+    </b-table>
   </div>
 </template>
 
